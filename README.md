@@ -1,4 +1,4 @@
-## Website video link - https://screenapp.io/app/v/IEIVCJonbn
+## Website video link - https://drive.google.com/file/d/1liuuuPNKUPgq_XYQ9XlQwlR4LRsbT0G6/view
 
 # 🚧 INFRA DRISHTI  
 ## 🛡️ A Vision Towards Safer Infrastructure in India
@@ -108,6 +108,11 @@ Prediction builds trust, accountability, and confidence.
 - Real-time stats  
 - Quick navigation  
 
+### 🤖 DRISHTI-BOT
+- AI assistant  
+- Explains predictions  
+- Guides users  
+
 ### 🗺️ Risk Map
 - Interactive live markers  
 - Color-coded severity  
@@ -150,11 +155,6 @@ Prediction builds trust, accountability, and confidence.
 - Description  
 - Images  
 - Direct govt connection  
-
-### 🤖 DRISHTI-BOT
-- AI assistant  
-- Explains predictions  
-- Guides users  
 
 ---
 
