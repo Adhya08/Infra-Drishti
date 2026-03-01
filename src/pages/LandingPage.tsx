@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { MapComponent } from '../components/MapComponent';
 import { mockAssets } from '../data/mockAssets';
