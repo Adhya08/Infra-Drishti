@@ -1,7 +1,8 @@
 import React from 'react';
+import HomePage from './components/HomePage';
 
 const App: React.FC = () => {
-  return <div>Infra Drishti</div>;
+  return <HomePage />;
 };
 
 export default App;
