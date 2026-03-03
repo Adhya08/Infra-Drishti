@@ -12,8 +12,7 @@ const Sidebar = ({ isOpen }) => {
 
       <ul className="p-6 space-y-4">
         <li className="cursor-pointer hover:text-blue-600">Dashboard</li>
-        <li className="cursor-pointer hover:text-blue-600">Analytics</li>
-        <li className="cursor-pointer hover:text-blue-600">Reports</li>
+
         <li className="cursor-pointer hover:text-blue-600">Settings</li>
       </ul>
     </div>
