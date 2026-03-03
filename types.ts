@@ -63,14 +63,6 @@ export interface Asset {
 // Scenario Simulation
 // ----------------------
 
-export interface ScenarioFactors {
-  maintenanceGap: number;    // years
-  trafficIncrease: number;   // %
-  rainfallIntensity: number; // 1–10
-  heavyVehicleRatio: number; // 0–100 %
-  seismicIntensity: number;  // 0–10
-  materialQuality: number;   // 0–1
-}
 
 // ----------------------
 // Chat System
