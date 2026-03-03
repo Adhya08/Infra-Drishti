@@ -60,11 +60,6 @@ export interface Asset {
 }
 
 // ----------------------
-// Scenario Simulation
-// ----------------------
-
-
-// ----------------------
 // Chat System
 // ----------------------
 
@@ -75,4 +70,19 @@ export interface ChatMessage {
 
   image?: string;
   groundingMetadata?: unknown;
+}
+
+
+
+// ----------------------
+// Scenario Simulation
+// ----------------------
+
+export interface ScenarioFactors {
+  maintenanceGap: number;    // years
+  trafficIncrease: number;   // %
+  rainfallIntensity: number; // 1–10
+  heavyVehicleRatio: number; // 0–100 %
+  seismicIntensity: number;  // 0–10
+  materialQuality: number;   // 0–1
 }
