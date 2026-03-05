@@ -174,7 +174,81 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onExplore, onHowItWork
         </div>
       </section>
 
-      
+      {/* Network Health Stats Section */}
+      <section className="py-24 bg-slate-900 transition-colors overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
+              <div>
+                 <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] mb-4">Accuracy</p>
+                 <div className="text-6xl font-black text-white">99.8%</div>
+                 <p className="text-sm text-slate-400 mt-2">AI Model Precision</p>
+              </div>
+              <div className="border-l border-slate-800 pl-12">
+                 <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] mb-4">Assets</p>
+                 <div className="text-6xl font-black text-white">48</div>
+                 <p className="text-sm text-slate-400 mt-2">Monitored Real-time</p>
+              </div>
+              <div className="border-l border-slate-800 pl-12">
+                 <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] mb-4">Government Initiatives</p>
+                 <div className="text-6xl font-black text-white">6</div>
+                 <p className="text-sm text-slate-400 mt-2">Integrated Projects</p>
+              </div>
+              <div className="border-l border-slate-800 pl-12">
+                 <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em] mb-4">Reports</p>
+                 <div className="text-6xl font-black text-white">12k+</div>
+                 <p className="text-sm text-slate-400 mt-2">Citizen Submissions</p>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <div className="bg-white dark:bg-slate-950 py-24 sm:py-32 border-t border-slate-200 dark:border-slate-800 transition-colors">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center">
+            <h2 className="text-base font-semibold leading-7 text-blue-600 dark:text-blue-400 uppercase tracking-widest">Digital Resilience</h2>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+              NHAI & NHIDCL Integrated Intelligence
+            </p>
+          </div>
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+              {[
+                {
+                  name: 'Mountain & Hill Connectivity',
+                  desc: 'Specialized NHIDCL monitoring for tunnels and bridges in high-altitude zones like Ladakh, Sikkim, and Arunachal Pradesh.',
+                  icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z'
+                },
+                {
+                  name: 'Strategic Infrastructure',
+                  desc: 'Ensuring 24/7 reliability for critical border roads and high-traffic national corridors through predictive telemetry.',
+                  icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+                },
+                {
+                  name: 'Climate-Adaptive Risk',
+                  desc: 'Live NHAI/NHIDCL data combined with landslide and flood risk models for India\'s diverse geographical terrains.',
+                  icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+                }
+              ].map(benefit => (
+                <div key={benefit.name} className="flex flex-col">
+                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-slate-900 dark:text-white">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 shadow-lg shadow-blue-500/30">
+                      <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={benefit.icon} />
+                      </svg>
+                    </div>
+                    {benefit.name}
+                  </dt>
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-slate-600 dark:text-slate-400">
+                    <p className="flex-auto">{benefit.desc}</p>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
