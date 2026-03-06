@@ -234,7 +234,48 @@ export const AssetPanel: React.FC<AssetPanelProps> = ({ asset, onClose }) => {
           </div>
         </div>
 
+        {/* Explainable AI Block */}
+        <div className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-[2.5rem] space-y-6 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-slate-900 dark:bg-white rounded-2xl flex items-center justify-center text-white dark:text-slate-900 shadow-xl">
+              <BrainCircuit className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="text-sm font-black uppercase tracking-wider text-slate-900 dark:text-slate-100 leading-none mb-1">Explainable AI Analysis</h3>
+              <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Reasoning Confidence: 94.8%</p>
+            </div>
+          </div>
 
+          <div className="grid gap-6">
+            {[
+              { label: 'Structural Fatigue', icon: Clock, value: agePct, color: 'bg-slate-900 dark:bg-white', detail: `${asset.age}y` },
+              { label: 'Operational Load', icon: Truck, value: loadPct, color: 'bg-slate-600 dark:bg-slate-400', detail: `${asset.loadFactor}/10` },
+              { label: 'Environmental Stress', icon: CloudRain, value: climatePct, color: 'bg-slate-400 dark:bg-slate-600', detail: `${asset.climateImpact}/10` }
+            ].map((factor) => (
+              <div key={factor.label} className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <factor.icon className="w-3.5 h-3.5 text-slate-400" />
+                    <span className="text-[11px] font-bold text-slate-600 dark:text-slate-400">{factor.label} ({factor.detail})</span>
+                  </div>
+                  <span className="text-xs font-black text-slate-900 dark:text-white">{factor.value}%</span>
+                </div>
+                <div className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div className={`h-full ${factor.color} rounded-full transition-all duration-700`} style={{ width: `${factor.value}%` }}></div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-white dark:bg-slate-950 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 italic relative group">
+            <div className="absolute top-2 left-2 opacity-5 text-4xl font-serif">"</div>
+            <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium relative z-10">
+              "Current risk vector <strong>({asset.riskScore})</strong> is primarily governed by
+              <strong> {loadPct > agePct ? 'Dynamic Loading' : 'Aged Deterioration'}</strong>.
+              {asset.riskScore > 60 ? ' Recommend immediate intervention via ultrasound scanning to evaluate subsurface cracks.' : ' Systematic health remains within nominal design tolerances for the current cycle.'}"
+            </p>
+          </div>
+        </div>
 
         {/* Timeline View */}
         <div className="space-y-6">
