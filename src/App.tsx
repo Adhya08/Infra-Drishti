@@ -3,6 +3,12 @@ import { Navbar } from "./components/Navbar";
 import { Sidebar } from "./components/Sidebar";
 import { MapComponent } from "./components/MapComponent";
 import { AssetPanel } from "./components/AssetPanel";
+
+import { LandingPage } from "./pages/LandingPage";
+import { AnalysisPage } from "./pages/AnalysisPage";
+import { SimulatorPage } from "./pages/SimulatorPage";
+import { NewsPage } from "./pages/NewsPage";
+
 import { Asset } from "./types";
 import { mockAssets as initialAssets } from "./data/mockAssets";
 
@@ -16,14 +22,24 @@ const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    if (isDarkMode) document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
   }, [isDarkMode]);
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
+
+  const renderContent = () => {
+    switch (currentTab) {
+      case "analysis":
+        return <AnalysisPage />;
+      case "news":
+        return <NewsPage />;
+      case "simulator":
+        return <SimulatorPage isDarkMode={isDarkMode} />;
+      default:
+        return <LandingPage />;
+    }
+  };
 
   return (
     <div>
@@ -42,16 +58,7 @@ const App: React.FC = () => {
         onTabChange={setCurrentTab}
       />
 
-      <MapComponent
-        assets={assets}
-        selectedAsset={selectedAsset}
-        onSelectAsset={setSelectedAsset}
-      />
-
-      <AssetPanel
-        asset={selectedAsset}
-        onClose={() => setSelectedAsset(null)}
-      />
+      {renderContent()}
     </div>
   );
 };
