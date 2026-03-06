@@ -13,3 +13,7 @@ import {
   Loader2,
   Info
 } from 'lucide-react';
+
+interface LoginPageProps {
+  onLoginSuccess: (user: User) => void;
+}
