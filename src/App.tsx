@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { Sidebar } from "./components/Sidebar";
+import { MapComponent } from "./components/MapComponent";
+import { AssetPanel } from "./components/AssetPanel";
 import { Asset } from "./types";
 import { mockAssets as initialAssets } from "./data/mockAssets";
 
@@ -28,9 +30,9 @@ const App: React.FC = () => {
       <Navbar
         currentTab={currentTab}
         onTabChange={setCurrentTab}
-        onToggleSidebar={() => setIsSidebarOpen(true)}
         isDarkMode={isDarkMode}
         toggleTheme={toggleTheme}
+        onToggleSidebar={() => setIsSidebarOpen(true)}
       />
 
       <Sidebar
@@ -40,9 +42,16 @@ const App: React.FC = () => {
         onTabChange={setCurrentTab}
       />
 
-      <main>
-        <h2>{currentTab}</h2>
-      </main>
+      <MapComponent
+        assets={assets}
+        selectedAsset={selectedAsset}
+        onSelectAsset={setSelectedAsset}
+      />
+
+      <AssetPanel
+        asset={selectedAsset}
+        onClose={() => setSelectedAsset(null)}
+      />
     </div>
   );
 };
