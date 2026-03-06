@@ -1,84 +1,48 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { Sidebar } from "./components/Sidebar";
-import { MapComponent } from "./components/MapComponent";
-import { LandingPage } from "./pages/LandingPage";
-import { mockAssets } from "./data/mockAssets";
 import { Asset } from "./types";
+import { mockAssets as initialAssets } from "./data/mockAssets";
 
 const App: React.FC = () => {
-  const [currentTab, setCurrentTab] = useState<"home" | "map">("home");
-  const [assets] = useState<Asset[]>(mockAssets);
-
+  const [currentTab, setCurrentTab] = useState("home");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    if (typeof window !== "undefined") {
-      return (
-        localStorage.getItem("theme") === "dark" ||
-        (!localStorage.getItem("theme") &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      );
-    }
-    return false;
-  });
+  const [assets] = useState<Asset[]>(initialAssets);
+  const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
     }
   }, [isDarkMode]);
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  const renderContent = () => {
-    switch (currentTab) {
-      case "map":
-        return (
-          <div className="w-full h-[calc(100vh-64px)]">
-            <MapComponent assets={assets} />
-          </div>
-        );
-
-      case "home":
-      default:
-        return (
-          <LandingPage
-            onExplore={() => setCurrentTab("map")}
-          />
-        );
-    }
-  };
+  const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col transition-colors duration-300">
-      
+    <div>
       <Navbar
         currentTab={currentTab}
         onTabChange={setCurrentTab}
+        onToggleSidebar={() => setIsSidebarOpen(true)}
         isDarkMode={isDarkMode}
         toggleTheme={toggleTheme}
-        onToggleSidebar={() => setIsSidebarOpen(true)}
       />
 
-      <div className="flex flex-grow relative">
-        <Sidebar
-          isOpen={isSidebarOpen}
-          onClose={() => setIsSidebarOpen(false)}
-          currentTab={currentTab}
-          onTabChange={setCurrentTab}
-        />
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+        currentTab={currentTab}
+        onTabChange={setCurrentTab}
+      />
 
-        <main className="flex-grow overflow-hidden">
-          {renderContent()}
-        </main>
-      </div>
+      <main>
+        <h2>{currentTab}</h2>
+      </main>
     </div>
   );
 };
