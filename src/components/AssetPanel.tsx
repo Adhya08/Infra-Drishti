@@ -143,7 +143,98 @@ export const AssetPanel: React.FC<AssetPanelProps> = ({ asset, onClose }) => {
           </div>
         </div>
 
-       
+        {/* Engineering Telemetry HUD */}
+        <div className="bg-slate-900 p-8 rounded-[2.5rem] shadow-2xl border border-slate-800 space-y-8 overflow-hidden relative group">
+          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+            <Zap className="w-24 h-24 text-white -rotate-12" />
+          </div>
+
+          <div className="relative z-10">
+            <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-6 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-pulse"></span>
+              Digital Twin Telemetry
+            </h3>
+            <div className="grid grid-cols-2 gap-8">
+              <div className="space-y-2">
+                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest block">Normal Stress</span>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-2xl font-black text-white tracking-tight">{asset.telemetry.stress}</span>
+                  <span className="text-[10px] text-slate-400 font-black">MPa</span>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest block">Micro-Strain</span>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-2xl font-black text-white tracking-tight">{asset.telemetry.strain}</span>
+                  <span className="text-[10px] text-slate-400 font-black">με</span>
+                </div>
+              </div>
+
+              <div className="col-span-2 space-y-4 pt-4 border-t border-slate-800">
+                <div className="flex justify-between items-end">
+                  <div className="space-y-1">
+                    <span className="text-[9px] text-slate-500 uppercase font-black tracking-widest block">Structure Utilization</span>
+                    <p className="text-[10px] text-blue-100/60 font-medium">Safe Limit: {asset.telemetry.loadCapacity.toLocaleString()} T/D</p>
+                  </div>
+                  <span className="text-xl font-black text-white">{(asset.loadFactor * 10).toFixed(0)}%</span>
+                </div>
+                <div className="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full rounded-full transition-all duration-1000 ${asset.loadFactor > 8 ? 'bg-white' : asset.loadFactor > 5 ? 'bg-slate-400' : 'bg-slate-600'
+                      }`}
+                    style={{ width: `${asset.loadFactor * 10}%` }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Stress-Strain Curve Visualization */}
+          <div className="pt-6 border-t border-slate-800 relative z-10">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Yield Distribution Graph</h3>
+              <LineChartIcon className="w-4 h-4 text-slate-600" />
+            </div>
+            <div className="h-44 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={curveData} margin={{ top: 5, right: 20, left: -20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+                  <XAxis dataKey="strain" hide />
+                  <YAxis hide />
+                  <Line
+                    type="monotone"
+                    dataKey="stress"
+                    stroke={isDarkMode ? "#ffffff" : "#475569"}
+                    strokeWidth={3}
+                    dot={false}
+                    animationDuration={1500}
+                  />
+                  <ReferenceDot
+                    x={asset.telemetry.strain}
+                    y={asset.telemetry.stress}
+                    r={6}
+                    fill="#ef4444"
+                    stroke="#fff"
+                    strokeWidth={2}
+                    className="animate-pulse"
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="flex items-center justify-center gap-4 mt-4 text-[8px] font-black uppercase tracking-widest text-slate-600">
+              <div className="flex items-center gap-1.5">
+                <div className="w-2 h-2 rounded-full bg-slate-400"></div>
+                <span>Elastic Phase</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-2 h-2 rounded-full bg-slate-900 dark:bg-white"></div>
+                <span>Operational Point</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 
         {/* Timeline View */}
         <div className="space-y-6">
