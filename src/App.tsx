@@ -12,14 +12,17 @@ import { NewsPage } from "./pages/NewsPage";
 import { Asset } from "./types";
 import { mockAssets as initialAssets } from "./data/mockAssets";
 
+import { GoogleGenAI } from "@google/genai";
+
 const App: React.FC = () => {
   const [currentTab, setCurrentTab] = useState("home");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const [assets] = useState<Asset[]>(initialAssets);
+  const [assets, setAssets] = useState<Asset[]>(initialAssets);
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
 
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     if (isDarkMode) document.documentElement.classList.add("dark");
@@ -27,6 +30,27 @@ const App: React.FC = () => {
   }, [isDarkMode]);
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
+
+  const handleSearch = async (query: string) => {
+    setIsSearching(true);
+
+    try {
+      const ai = new GoogleGenAI({
+        apiKey: process.env.GEMINI_API_KEY,
+      });
+
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: `Locate significant Indian infrastructure assets matching: "${query}".`,
+      });
+
+      console.log(response);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSearching(false);
+    }
+  };
 
   const renderContent = () => {
     switch (currentTab) {
@@ -36,6 +60,23 @@ const App: React.FC = () => {
         return <NewsPage />;
       case "simulator":
         return <SimulatorPage isDarkMode={isDarkMode} />;
+      case "map":
+        return (
+          <>
+            <MapComponent
+              assets={assets}
+              selectedAsset={selectedAsset}
+              onSelectAsset={setSelectedAsset}
+              onSearchInfrastructure={handleSearch}
+              isSearching={isSearching}
+              isDarkMode={isDarkMode}
+            />
+            <AssetPanel
+              asset={selectedAsset}
+              onClose={() => setSelectedAsset(null)}
+            />
+          </>
+        );
       default:
         return <LandingPage />;
     }
