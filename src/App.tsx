@@ -3,6 +3,7 @@ import { Navbar } from "./components/Navbar";
 import { Sidebar } from "./components/Sidebar";
 import { MapComponent } from "./components/MapComponent";
 import { AssetPanel } from "./components/AssetPanel";
+import { AIChatbot } from "./components/AIChatbot";
 
 import { LandingPage } from "./pages/LandingPage";
 import { AnalysisPage } from "./pages/AnalysisPage";
@@ -100,6 +101,11 @@ const App: React.FC = () => {
       />
 
       {renderContent()}
+
+      <AIChatbot
+        isSidebarOpen={isSidebarOpen}
+        selectedAsset={selectedAsset}
+      />
     </div>
   );
 };
