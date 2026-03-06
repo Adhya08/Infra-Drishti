@@ -1,8 +1,3 @@
-// Shared domain types for Infrastructure Risk Intelligence System
-
-// ----------------------
-// Risk Levels
-// ----------------------
 
 export enum RiskLevel {
   LOW = 'low',
@@ -10,79 +5,49 @@ export enum RiskLevel {
   HIGH = 'high'
 }
 
-// ----------------------
-// Maintenance
-// ----------------------
-
 export interface MaintenanceEvent {
-  date: string; // ISO date
+  date: string;
   type: string;
   description: string;
 }
 
-// ----------------------
-// Engineering Telemetry
-// ----------------------
-
 export interface EngineeringTelemetry {
-  stress: number;              // MPa
-  strain: number;              // microns/m
-  loadCapacity: number;        // Tons/day or standard load units
-  vibrationFrequency: number;  // Hz
+  stress: number; // in MPa
+  strain: number; // in microns/m
+  loadCapacity: number; // in Tons/day or standard load units
+  vibrationFrequency: number; // in Hz (Natural frequency)
 }
-
-// ----------------------
-// Core Asset Model
-// ----------------------
 
 export interface Asset {
   id: string;
   name: string;
-
   type: 'Bridge' | 'Road' | 'Building' | 'Tunnel' | 'Flyover';
-
   coordinates: [number, number]; // [lat, lng]
-
-  riskScore: number;  // 0–100
-  age: number;        // years
+  riskScore: number; // 0-100
+  age: number; // years
   lastMaintenance: string; // ISO date
-
-  loadFactor: number;     // 0–10
-  climateImpact: number;  // 0–10
-
+  loadFactor: number; // 0-10
+  climateImpact: number; // 0-10
   description: string;
   zone: string;
-
   timeline: MaintenanceEvent[];
   telemetry: EngineeringTelemetry;
-
   imageUrl?: string;
 }
 
-// ----------------------
-// Chat System
-// ----------------------
+export interface ScenarioFactors {
+  maintenanceGap: number; // years
+  trafficIncrease: number; // percentage
+  rainfallIntensity: number; // scale 1-10
+  heavyVehicleRatio: number; // percentage 0-100
+  seismicIntensity: number; // Richter scale 0-10
+  materialQuality: number; // 0-1 (1 is perfect)
+}
 
 export interface ChatMessage {
   role: 'user' | 'model';
   text: string;
   timestamp: Date;
-
   image?: string;
-  groundingMetadata?: unknown;
-}
-
-
-
-// ----------------------
-// Scenario Simulation
-// ----------------------
-
-export interface ScenarioFactors {
-  maintenanceGap: number;    // years
-  trafficIncrease: number;   // %
-  rainfallIntensity: number; // 1–10
-  heavyVehicleRatio: number; // 0–100 %
-  seismicIntensity: number;  // 0–10
-  materialQuality: number;   // 0–1
+  groundingMetadata?: any;
 }
