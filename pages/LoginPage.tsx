@@ -45,3 +45,24 @@ const handleSubmit = async (e: React.FormEvent) => {
     setError('Verification failed: Identifier or Access Key mismatch.');
   }
 }
+else {
+  const users = db.getUsers();
+
+  if (users.find(u => u.email.toLowerCase() === email.toLowerCase())) {
+    setError('Security alert: Entity identifier already exists in registry.');
+    setIsLoading(false);
+    return;
+  }
+
+  const newUser: User = {
+    id: `u-${Date.now()}`,
+    email: email.toLowerCase(),
+    name,
+    role: 'citizen',
+    password
+  };
+
+  db.saveUser(newUser);
+  db.setCurrentUser(newUser);
+  onLoginSuccess(newUser);
+}
