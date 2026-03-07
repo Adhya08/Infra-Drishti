@@ -66,3 +66,5 @@ else {
   db.setCurrentUser(newUser);
   onLoginSuccess(newUser);
 }
+return (
+  <div className="min-h-[calc(100vh-64px)] flex items-center justify-center p-4 sm:p-6 bg-slate-50 dark:bg-slate-950 transition-colors relative overflow-hidden">
