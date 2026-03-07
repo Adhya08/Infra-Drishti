@@ -32,3 +32,16 @@ const handleSubmit = async (e: React.FormEvent) => {
   setIsLoading(true);
 
   await new Promise(resolve => setTimeout(resolve, 800));
+  if (isLogin) {
+  const users = db.getUsers();
+  const user = users.find(
+    u => u.email.toLowerCase() === email.toLowerCase() && u.password === password
+  );
+
+  if (user) {
+    db.setCurrentUser(user);
+    onLoginSuccess(user);
+  } else {
+    setError('Verification failed: Identifier or Access Key mismatch.');
+  }
+}
