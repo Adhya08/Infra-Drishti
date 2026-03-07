@@ -30,3 +30,5 @@ const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   setError('');
   setIsLoading(true);
+
+  await new Promise(resolve => setTimeout(resolve, 800));
