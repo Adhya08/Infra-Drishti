@@ -125,3 +125,46 @@ export const AnalysisPage: React.FC = () => {
           />
         </div>
       </section>
+            {/* Simplified Metrics Grid */}
+      <section className="mb-40">
+        <div className="flex flex-col md:flex-row justify-between items-baseline mb-16 gap-4 animate-reveal">
+          <div>
+            <h2 className="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">The "Vital Signs" We Track</h2>
+            <p className="text-slate-500 font-medium">Think of these as the blood pressure and pulse for our highways.</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <AnalogyCard
+            title="Internal Pressure"
+            analogy="Backpack Weight"
+            desc="How much weight the structure 'feels' inside. Too much pressure for too long can cause hidden fatigue."
+            icon={Activity}
+            technicalTerm="Stress (MPa)"
+            color="bg-slate-900"
+          />
+          <AnalogyCard
+            title="Stretching"
+            analogy="A Rubber Band"
+            desc="Structures change shape slightly under load. If they don't 'snap back' to their original shape, they are wearing out."
+            icon={Waves}
+            technicalTerm="Strain (μm/m)"
+            color="bg-slate-400"
+          />
+          <AnalogyCard
+            title="Traffic Load"
+            analogy="Crowd Control"
+            desc="We track the total number of heavy trucks. It's like counting how many people are standing on a single chair."
+            icon={Truck}
+            technicalTerm="Operational Factor"
+            color="bg-slate-600"
+          />
+          <AnalogyCard
+            title="Vibration"
+            analogy="Musical Tuning"
+            desc="Every bridge 'hums' at a certain frequency. If that hum changes, it means something is loose or cracked inside."
+            icon={Music}
+            technicalTerm="Resonance (Hz)"
+            color="bg-slate-500"
+          />
+        </div>
+      </section>
