@@ -168,3 +168,63 @@ export const AnalysisPage: React.FC = () => {
           />
         </div>
       </section>
+           {/* STRATEGIC DATA SOURCES SECTION */}
+      <section className="mb-40">
+        <div className="flex flex-col md:flex-row justify-between items-baseline mb-16 gap-4 animate-reveal">
+          <div>
+            <h2 className="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">Strategic Data Inventory</h2>
+            <p className="text-slate-500 font-medium italic">Grounding our AI in official national repositories and standards.</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <DataSourceCard
+            agency="NHAI"
+            title="Data Lake & VAHAN"
+            desc="Ingesting telemetry from 500+ toll plazas and the centralized Data Lake for pavement quality (IRI indices) and traffic density."
+            tag="Operational Load"
+            updateFreq="Real-time"
+          />
+          <DataSourceCard
+            agency="IMD & NCS"
+            title="Climate & Seismology"
+            desc="Satellite precipitation streams and tectonic shift data for assets in Himalayas and high-risk flood zones (Kerala/Assam)."
+            tag="Environmental Stress"
+            updateFreq="60 Min"
+          />
+          <DataSourceCard
+            agency="NHIDCL"
+            title="Hill-Infra Logs"
+            desc="Specific maintenance and structural integrity logs for mountain tunnels and border bridges in Strategic Zones."
+            tag="Structural Integrity"
+            updateFreq="Daily"
+          />
+        </div>
+
+        <div className="bg-slate-900 dark:bg-black p-8 rounded-[3rem] border border-slate-800 shadow-2xl overflow-hidden relative group">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+          <div className="relative z-10 flex flex-col lg:flex-row gap-12 items-center">
+            <div className="lg:w-1/3">
+              <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Engineering Codes</h3>
+              <h4 className="text-2xl font-black text-white uppercase tracking-tighter leading-tight mb-4">BIS Standard <br />Registry Integration</h4>
+              <p className="text-xs text-slate-400 font-medium leading-relaxed">
+                Our decay algorithms are calibrated against the **Bureau of Indian Standards (BIS)** 2024 revisions to ensure compliance with national engineering safety mandates.
+              </p>
+            </div>
+            <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {[
+                { code: 'IS 456', label: 'Concrete Design', desc: 'Durability limits for saline environments.' },
+                { code: 'IS 800', label: 'Steel Struct.', desc: 'Fatigue life cycles for structural steel.' },
+                { code: 'IS 1893', label: 'Seismic Res.', desc: 'Zonal acceleration coefficients (Zone I-V).' },
+                { code: 'IS 13920', label: 'Ductile Det.', desc: 'Flexibility markers for high-load nodes.' }
+              ].map(bis => (
+                <div key={bis.code} className="bg-white/5 border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-colors">
+                  <span className="text-xs font-black text-slate-300 block mb-1">{bis.code}</span>
+                  <span className="text-[9px] font-bold text-white uppercase tracking-widest block mb-2">{bis.label}</span>
+                  <p className="text-[9px] text-slate-500 leading-tight">{bis.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
