@@ -31,7 +31,8 @@ const AnalogyCard: React.FC<{
       }`}>
       <Icon className="w-7 h-7" />
     </div>
-        <div className="mb-4">
+
+    <div className="mb-4">
       <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest block mb-1">Analog: {analogy}</span>
       <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter group-hover:text-slate-500 transition-colors">{title}</h3>
     </div>
@@ -46,6 +47,7 @@ const AnalogyCard: React.FC<{
     </div>
   </div>
 );
+
 const Step: React.FC<{ number: string, title: string, desc: string, icon: LucideIcon }> = ({ number, title, desc, icon: Icon }) => (
   <div className="relative flex flex-col items-center text-center group px-4 animate-fade-in-up">
     <div className="w-20 h-20 bg-white dark:bg-slate-900 rounded-3xl flex items-center justify-center mb-6 border border-slate-200 dark:border-slate-800 shadow-xl group-hover:scale-110 group-hover:bg-slate-950 dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-slate-950 transition-all duration-500">
@@ -58,6 +60,7 @@ const Step: React.FC<{ number: string, title: string, desc: string, icon: Lucide
     <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium">{desc}</p>
   </div>
 );
+
 const DataSourceCard: React.FC<{
   agency: string;
   title: string;
@@ -78,6 +81,7 @@ const DataSourceCard: React.FC<{
     </div>
   </div>
 );
+
 export const AnalysisPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 py-20 dark:bg-slate-950 transition-colors">
@@ -95,7 +99,8 @@ export const AnalysisPage: React.FC = () => {
           We use live sensors to "listen" to how structures feel and warn engineers before anything breaks.
         </p>
       </section>
-            {/* The 4-Step Simple Journey */}
+
+      {/* The 4-Step Simple Journey */}
       <section className="mb-40 relative">
         <div className="absolute top-10 left-0 w-full h-0.5 bg-slate-100 dark:bg-slate-800 hidden lg:block"></div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
@@ -125,7 +130,8 @@ export const AnalysisPage: React.FC = () => {
           />
         </div>
       </section>
-            {/* Simplified Metrics Grid */}
+
+      {/* Simplified Metrics Grid */}
       <section className="mb-40">
         <div className="flex flex-col md:flex-row justify-between items-baseline mb-16 gap-4 animate-reveal">
           <div>
@@ -168,7 +174,8 @@ export const AnalysisPage: React.FC = () => {
           />
         </div>
       </section>
-           {/* STRATEGIC DATA SOURCES SECTION */}
+
+      {/* STRATEGIC DATA SOURCES SECTION */}
       <section className="mb-40">
         <div className="flex flex-col md:flex-row justify-between items-baseline mb-16 gap-4 animate-reveal">
           <div>
@@ -228,3 +235,67 @@ export const AnalysisPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Why it works - Explanatory Section */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-40">
+        <div className="space-y-10">
+          <div>
+            <div className="w-12 h-1.5 bg-slate-900 dark:bg-white mb-6 rounded-full"></div>
+            <h2 className="text-4xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-6 leading-[0.95]">No "Black Boxes." <br />Just Pure Physics.</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+              We don't just give a risk number; we explain it. Our platform tells you exactly
+              which factor is the problem—whether it's the age of the material, the
+              number of trucks, or the intensity of recent monsoons.
+            </p>
+          </div>
+
+          <div className="space-y-8 bg-slate-50 dark:bg-slate-900/40 p-10 rounded-[2.5rem] border border-slate-100 dark:border-slate-800">
+            <div className="flex gap-6 group">
+              <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center shrink-0 shadow-sm border border-slate-200 dark:border-slate-700 group-hover:border-slate-950 dark:group-hover:border-white transition-colors">
+                <AlertTriangle className="w-6 h-6 text-slate-900 dark:text-white" />
+              </div>
+              <div>
+                <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Early Warning</h4>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">Our system detects internal fatigue years before a visible crack ever appears to the human eye.</p>
+              </div>
+            </div>
+            <div className="flex gap-6 group">
+              <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center shrink-0 shadow-sm border border-slate-200 dark:border-slate-700 group-hover:border-slate-950 dark:group-hover:border-white transition-colors">
+                <PieChart className="w-6 h-6 text-slate-900 dark:text-white" />
+              </div>
+              <div>
+                <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Smart Prioritization</h4>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">Government budgets are tight. We help officials spend money on the bridges that actually need it most.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-slate-900 p-12 rounded-[3.5rem] border border-slate-800 shadow-2xl relative overflow-hidden text-center lg:text-left">
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-slate-400"></div>
+          <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Safety Audit Protocol</h4>
+          <h3 className="text-3xl font-black text-white uppercase tracking-tighter mb-8 leading-none">Your Safety, <br />Calculated.</h3>
+
+          <div className="space-y-4 text-left">
+            <div className="p-4 bg-white/5 rounded-2xl border border-white/10 flex items-start gap-4">
+              <div className="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center shrink-0 text-slate-900 font-black text-[10px]">1</div>
+              <p className="text-xs text-slate-400 font-medium">If Risk exceeds <strong>75%</strong>, an immediate physical audit is mandated within 7 days.</p>
+            </div>
+            <div className="p-4 bg-white/5 rounded-2xl border border-white/10 flex items-start gap-4">
+              <div className="w-6 h-6 rounded-full bg-slate-400 flex items-center justify-center shrink-0 text-white font-black text-[10px]">2</div>
+              <p className="text-xs text-slate-400 font-medium">Citizen reports are cross-checked with sensor data to verify structural markers.</p>
+            </div>
+            <div className="p-4 bg-white/5 rounded-2xl border border-white/10 flex items-start gap-4">
+              <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center shrink-0 text-white font-black text-[10px]">3</div>
+              <p className="text-xs text-slate-400 font-medium">All findings are shared with NHAI & NHIDCL for permanent record keeping.</p>
+            </div>
+          </div>
+
+          <div className="mt-10 pt-6 border-t border-white/5 text-[9px] text-slate-500 uppercase font-bold tracking-widest italic">
+            * Methodology compliant with MoRTH 2024 Safety Directives
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
