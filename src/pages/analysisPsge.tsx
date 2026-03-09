@@ -78,3 +78,50 @@ const DataSourceCard: React.FC<{
     </div>
   </div>
 );
+export const AnalysisPage: React.FC = () => {
+  return (
+    <div className="max-w-7xl mx-auto px-6 py-20 dark:bg-slate-950 transition-colors">
+      {/* Simplified Hero */}
+      <section className="mb-32 flex flex-col items-center text-center">
+        <div className="inline-flex items-center gap-3 mb-8 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-700 shadow-sm animate-fade-in">
+          <div className="w-2 h-2 bg-slate-900 dark:bg-white rounded-full animate-pulse"></div>
+          <h2 className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-[0.4em]">Methodology Simplified</h2>
+        </div>
+        <h1 className="text-5xl lg:text-7xl font-black text-slate-900 dark:text-white tracking-tighter uppercase leading-[0.9] mb-10 animate-reveal">
+          How We Predict <br /> <span className="text-slate-400">Public Risk</span>
+        </h1>
+        <p className="max-w-3xl text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-medium animate-fade-in delay-200">
+          Predicting infrastructure failure isn't magic—it's like a fitness tracker for a bridge.
+          We use live sensors to "listen" to how structures feel and warn engineers before anything breaks.
+        </p>
+      </section>
+            {/* The 4-Step Simple Journey */}
+      <section className="mb-40 relative">
+        <div className="absolute top-10 left-0 w-full h-0.5 bg-slate-100 dark:bg-slate-800 hidden lg:block"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
+          <Step
+            number="01"
+            title="Listen"
+            desc="Tiny sensors attached to the structure act like a stethoscope, listening to internal vibrations 24/7."
+            icon={Mic}
+          />
+          <Step
+            number="02"
+            title="Feel"
+            desc="We measure how much the structure stretches and bends when heavy trucks pass over it."
+            icon={Zap}
+          />
+          <Step
+            number="03"
+            title="Compare"
+            desc="Our AI compares current 'vital signs' with safe historical levels and thousands of other structures."
+            icon={BarChart3}
+          />
+          <Step
+            number="04"
+            title="Alert"
+            desc="If something feels 'off,' an automatic alert is sent to municipal engineers to schedule a physical check-up."
+            icon={Bell}
+          />
+        </div>
+      </section>
