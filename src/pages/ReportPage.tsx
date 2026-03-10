@@ -1,18 +1,24 @@
-import React from "react";
-import { db } from "../data/database";
+import React, { useState } from "react";
+import { GoogleGenAI } from "@google/genai";
 
 export const ReportPage: React.FC = () => {
+  const [assessment, setAssessment] = useState("");
 
-  const submit = () => {
-    db.saveReport({
-      userId: "guest",
-      description: "Sample"
+  const generateAI = async () => {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
+    const res = await ai.models.generateContent({
+      model: "gemini-3-flash-preview",
+      contents: "Analyze infrastructure issue."
     });
+
+    setAssessment(res.text || "");
   };
 
   return (
-    <button onClick={submit}>
-      Submit Report
-    </button>
+    <div>
+      <button onClick={generateAI}>Run AI</button>
+      <p>{assessment}</p>
+    </div>
   );
 };
