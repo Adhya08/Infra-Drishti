@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import { db } from '../data/database';
 import { Logo } from '../components/Logo';
@@ -80,7 +79,6 @@ VERIFIED BY: DRISHTI CORE INTELLIGENCE HUB
     setIsSyncing(true);
 
     try {
-      // Use Gemini to generate a preliminary structural assessment
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
@@ -140,7 +138,7 @@ VERIFIED BY: DRISHTI CORE INTELLIGENCE HUB
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-300">
+        <div className= "flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-300">
           <button
             onClick={() => {
               setSubmitted(false);
@@ -249,7 +247,7 @@ VERIFIED BY: DRISHTI CORE INTELLIGENCE HUB
                         className="text-[9px] font-black text-slate-500 dark:text-slate-400 uppercase flex items-center gap-1 hover:underline"
                         disabled={isDetectingLocation}
                       >
-                        {isDetectingLocation ? 'Pinging Satellites...' : 'Detect Geolocation'}
+                        { isDetectingLocation ? 'Pinging Satellites...' : 'Detect Geolocation'}
                       </button>
                     </div>
                     <div className="relative group">
@@ -366,4 +364,4 @@ VERIFIED BY: DRISHTI CORE INTELLIGENCE HUB
       </div>
     </div>
   );
-};
+};  
