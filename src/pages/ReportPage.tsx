@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 export const ReportPage: React.FC = () => {
-  const [category, setCategory] = useState("Flyover / Overpass");
-  const [location, setLocation] = useState("Mumbai Metropolitan");
-  const [description, setDescription] = useState("");
-  const [severity, setSeverity] = useState<"Low" | "Medium" | "High">("Medium");
+  const [hasPhoto, setHasPhoto] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handlePhotoClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = () => {
+    setHasPhoto(true);
+  };
 
   return (
     <div>
-      <h1>Report Structural Anomaly</h1>
+      <h1>Upload Evidence</h1>
 
-      <select value={severity} onChange={e => setSeverity(e.target.value as any)}>
-        <option>Low</option>
-        <option>Medium</option>
-        <option>High</option>
-      </select>
+      <input type="file" ref={fileInputRef} hidden onChange={handleFileChange}/>
+      <button onClick={handlePhotoClick}>
+        {hasPhoto ? "Evidence Secured" : "Upload Photo"}
+      </button>
     </div>
   );
 };
