@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import { db } from "../data/database";
 
 export const ReportPage: React.FC = () => {
-  const [location, setLocation] = useState("");
 
-  const handleDetectLocation = () => {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      const lat = pos.coords.latitude.toFixed(4);
-      const lng = pos.coords.longitude.toFixed(4);
-      setLocation(`${lat}, ${lng}`);
+  const submit = () => {
+    db.saveReport({
+      userId: "guest",
+      description: "Sample"
     });
   };
 
   return (
-    <div>
-      <button onClick={handleDetectLocation}>Detect Location</button>
-      <p>{location}</p>
-    </div>
+    <button onClick={submit}>
+      Submit Report
+    </button>
   );
 };
