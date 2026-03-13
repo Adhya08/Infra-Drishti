@@ -10,65 +10,95 @@ interface ScenarioFactors {
   materialQuality: number;
 }
 
+interface Interventions {
+  iotSensors:boolean
+  frpReinforcement:boolean
+  loadLimit:boolean
+}
+
 export const SimulatorPage: React.FC = () => {
 
-  const [factors] = useState<ScenarioFactors>({
-    maintenanceGap: 2,
-    trafficIncrease: 10,
-    rainfallIntensity: 4,
-    heavyVehicleRatio: 12,
-    seismicIntensity: 0,
-    materialQuality: 0.9
-  });
+  const [factors,setFactors] = useState<ScenarioFactors>({
+    maintenanceGap:2,
+    trafficIncrease:10,
+    rainfallIntensity:4,
+    heavyVehicleRatio:12,
+    seismicIntensity:0,
+    materialQuality:0.9
+  })
+
+  const [interventions,setInterventions] = useState<Interventions>({
+    iotSensors:false,
+    frpReinforcement:false,
+    loadLimit:false
+  })
 
   const data = useMemo(()=>{
 
     const baseRisk = 15
     const startYear = 2024
 
+    let reduction = 0
+    if(interventions.iotSensors) reduction += 5
+    if(interventions.frpReinforcement) reduction += 10
+    if(interventions.loadLimit) reduction += 6
+
     return Array.from({length:10}).map((_,i)=>({
-      year: startYear+i,
-      risk: Math.min(100, baseRisk + i*5)
+
+      year:startYear+i,
+      risk:Math.max(
+        5,
+        Math.min(
+          100,
+          baseRisk + i*5 + factors.maintenanceGap - reduction
+        )
+      )
+
     }))
 
-  },[])
+  },[factors,interventions])
 
-  const currentRisk = data[0].risk
-
-  const getStatus = (risk:number)=>{
-
-    if(risk>75) return "CRITICAL"
-    if(risk>45) return "WARNING"
-    return "OPTIMAL"
-
-  }
-
-  return (
+  return(
     <div>
 
       <h1>Predictive Stress Simulator</h1>
 
-      <h2>Status: {getStatus(currentRisk)}</h2>
+      <label>
+        <input
+          type="checkbox"
+          checked={interventions.iotSensors}
+          onChange={()=>setInterventions({...interventions,iotSensors:!interventions.iotSensors})}
+        />
+        IoT Monitoring
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          checked={interventions.frpReinforcement}
+          onChange={()=>setInterventions({...interventions,frpReinforcement:!interventions.frpReinforcement})}
+        />
+        FRP Reinforcement
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          checked={interventions.loadLimit}
+          onChange={()=>setInterventions({...interventions,loadLimit:!interventions.loadLimit})}
+        />
+        Load Limit Policy
+      </label>
 
       <div style={{height:400}}>
-
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
-
             <XAxis dataKey="year"/>
             <YAxis/>
             <Tooltip/>
-
-            <Area
-              type="monotone"
-              dataKey="risk"
-              stroke="#111"
-              fill="#ccc"
-            />
-
+            <Area type="monotone" dataKey="risk" stroke="#111" fill="#ccc"/>
           </AreaChart>
         </ResponsiveContainer>
-
       </div>
 
     </div>
