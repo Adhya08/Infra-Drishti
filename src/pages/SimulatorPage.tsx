@@ -33,10 +33,22 @@ export const SimulatorPage: React.FC = () => {
 
   },[])
 
+  const currentRisk = data[0].risk
+
+  const getStatus = (risk:number)=>{
+
+    if(risk>75) return "CRITICAL"
+    if(risk>45) return "WARNING"
+    return "OPTIMAL"
+
+  }
+
   return (
     <div>
 
       <h1>Predictive Stress Simulator</h1>
+
+      <h2>Status: {getStatus(currentRisk)}</h2>
 
       <div style={{height:400}}>
 
