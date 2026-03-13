@@ -11,9 +11,32 @@ export const SimulatorPage: React.FC = () => {
     }));
   }, []);
 
+  const currentRisk = data[0].risk;
+  const safetyScore = 100 - currentRisk;
+
   return (
     <div className="max-w-7xl mx-auto p-10 space-y-8">
+
       <h1 className="text-4xl font-black">Predictive Stress Simulator</h1>
+
+      <div className="grid md:grid-cols-3 gap-6">
+
+        <div className="p-6 rounded-xl bg-slate-100">
+          <p>Current Risk</p>
+          <h2 className="text-3xl font-bold">{currentRisk}%</h2>
+        </div>
+
+        <div className="p-6 rounded-xl bg-slate-100">
+          <p>Safety Score</p>
+          <h2 className="text-3xl font-bold">{safetyScore}%</h2>
+        </div>
+
+        <div className="p-6 rounded-xl bg-slate-100">
+          <p>Projection Window</p>
+          <h2 className="text-3xl font-bold">10 Years</h2>
+        </div>
+
+      </div>
 
       <div className="bg-white shadow rounded-2xl p-6">
         <div style={{ height: 400 }}>
@@ -27,6 +50,7 @@ export const SimulatorPage: React.FC = () => {
           </ResponsiveContainer>
         </div>
       </div>
+
     </div>
   );
 };
