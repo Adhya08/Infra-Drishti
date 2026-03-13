@@ -45,6 +45,7 @@ export const SimulatorPage: React.FC = () => {
 
   return (
     <div>
+
       <h1>Predictive Stress Simulator</h1>
 
       <SimulationSlider
@@ -53,6 +54,22 @@ export const SimulatorPage: React.FC = () => {
         min={0}
         max={20}
         onChange={(v)=>setFactors({...factors, maintenanceGap:v})}
+      />
+
+      <SimulationSlider
+        label="Traffic Growth"
+        value={factors.trafficIncrease}
+        min={0}
+        max={200}
+        onChange={(v)=>setFactors({...factors, trafficIncrease:v})}
+      />
+
+      <SimulationSlider
+        label="Rainfall Intensity"
+        value={factors.rainfallIntensity}
+        min={1}
+        max={10}
+        onChange={(v)=>setFactors({...factors, rainfallIntensity:v})}
       />
 
     </div>
