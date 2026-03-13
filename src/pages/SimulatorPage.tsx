@@ -9,6 +9,29 @@ interface ScenarioFactors {
   materialQuality: number;
 }
 
+const SimulationSlider: React.FC<{
+  label: string
+  value: number
+  min: number
+  max: number
+  onChange: (v:number)=>void
+}> = ({label,value,min,max,onChange}) => {
+
+  return (
+    <div>
+      <label>{label}</label>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        value={value}
+        onChange={(e)=>onChange(parseFloat(e.target.value))}
+      />
+      <span>{value}</span>
+    </div>
+  )
+}
+
 export const SimulatorPage: React.FC = () => {
 
   const [factors, setFactors] = useState<ScenarioFactors>({
@@ -23,7 +46,15 @@ export const SimulatorPage: React.FC = () => {
   return (
     <div>
       <h1>Predictive Stress Simulator</h1>
-      <p>Maintenance Gap: {factors.maintenanceGap}</p>
+
+      <SimulationSlider
+        label="Maintenance Delay"
+        value={factors.maintenanceGap}
+        min={0}
+        max={20}
+        onChange={(v)=>setFactors({...factors, maintenanceGap:v})}
+      />
+
     </div>
   );
 };
