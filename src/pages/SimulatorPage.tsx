@@ -12,6 +12,13 @@ export const SimulatorPage: React.FC = () => {
     }));
   }, []);
 
+  <button
+  onClick={() => window.location.reload()}
+  className="px-6 py-2 bg-black text-white rounded-xl"
+>
+  Reset Simulation
+</button>
+
   return (
     <div className="p-10 space-y-6">
 
