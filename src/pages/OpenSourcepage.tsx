@@ -13,41 +13,47 @@ export const OpenSourcePage: React.FC = () => {
         </p>
       </div>
 
-      <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-        <h2 className="text-xl font-bold text-slate-900 mb-6">
-          GitHub Repository
-        </h2>
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
 
-        <p className="text-slate-600 mb-6">
-          Access the full source code for the platform.
-        </p>
+          <h2 className="text-xl font-bold text-slate-900 mb-6">
+            GitHub Repository
+          </h2>
 
-        <div className="space-y-3">
-
-          <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
-            <span className="text-sm font-medium text-slate-700">
-              pid-predictor-core
-            </span>
-            <span className="text-xs font-bold text-blue-600 px-2 py-0.5 bg-blue-50 rounded">
-              Model
-            </span>
-          </div>
-
-          <div className="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
-            <span className="text-sm font-medium text-slate-700">
-              pid-dashboard-ui
-            </span>
-            <span className="text-xs font-bold text-emerald-600 px-2 py-0.5 bg-emerald-50 rounded">
-              Frontend
-            </span>
-          </div>
+          <button className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold">
+            View on GitHub
+          </button>
 
         </div>
 
-        <button className="mt-8 w-full py-3 bg-slate-900 text-white rounded-xl font-bold">
-          View on GitHub
-        </button>
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+
+          <h2 className="text-xl font-bold text-slate-900 mb-6">
+            Data Sources
+          </h2>
+
+          <ul className="space-y-4">
+
+            <li className="text-sm text-slate-700">
+              Department of Transportation (Maintenance Logs)
+            </li>
+
+            <li className="text-sm text-slate-700">
+              National Bridge Inventory (NBI)
+            </li>
+
+            <li className="text-sm text-slate-700">
+              NOAA Climate History & Flooding Trends
+            </li>
+
+            <li className="text-sm text-slate-700">
+              Municipal Geographic Information Systems (GIS)
+            </li>
+
+          </ul>
+
+        </div>
 
       </div>
 
