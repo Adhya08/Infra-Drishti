@@ -1,23 +1,21 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 
 export const SimulatorPage: React.FC = () => {
 
-  const [maintenanceGap] = useState(2)
-
   const data = useMemo(()=>{
 
-    const baseRisk = 20
     const startYear = 2024
+    const baseRisk = 18
 
-    return Array.from({length:12}).map((_,i)=>({
+    return Array.from({length:10}).map((_,i)=>({
       year:startYear+i,
-      risk:Math.min(100,baseRisk+i*6+maintenanceGap)
+      risk:Math.min(100,baseRisk+i*6)
     }))
 
   },[])
 
-  const failureYear = data.find(d=>d.risk>=80)?.year ?? "Safe"
+  const currentRisk = data[0].risk
 
   return(
 
@@ -25,7 +23,26 @@ export const SimulatorPage: React.FC = () => {
 
       <h1>Predictive Stress Simulator</h1>
 
-      <h2>Estimated Failure Year: {failureYear}</h2>
+      <div
+        style={{
+          width:"100%",
+          background:"#eee",
+          borderRadius:"8px",
+          overflow:"hidden"
+        }}
+      >
+
+        <div
+          style={{
+            width:`${currentRisk}%`,
+            background:"#111",
+            height:"12px"
+          }}
+        />
+
+      </div>
+
+      <p>Infrastructure Stress Level: {currentRisk}%</p>
 
       <div style={{height:400}}>
 
