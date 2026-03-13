@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 interface ScenarioFactors {
   maintenanceGap: number;
@@ -43,10 +43,19 @@ export const SimulatorPage: React.FC = () => {
     materialQuality: 0.9
   });
 
+  const risk = useMemo(() => {
+    return (
+      factors.maintenanceGap * 2 +
+      factors.trafficIncrease * 0.2 +
+      factors.rainfallIntensity * 1.5
+    )
+  }, [factors])
+
   return (
     <div>
 
       <h1>Predictive Stress Simulator</h1>
+      <h2>Risk Score: {risk.toFixed(2)}</h2>
 
       <SimulationSlider
         label="Maintenance Delay"
