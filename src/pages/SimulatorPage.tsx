@@ -1,96 +1,34 @@
 import React, { useState, useMemo } from 'react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 
-interface ScenarioFactors {
-  maintenanceGap: number;
-  trafficIncrease: number;
-  rainfallIntensity: number;
-  heavyVehicleRatio: number;
-  seismicIntensity: number;
-  materialQuality: number;
-}
-
-interface Interventions {
-  iotSensors:boolean
-  frpReinforcement:boolean
-  loadLimit:boolean
-}
-
 export const SimulatorPage: React.FC = () => {
 
-  const [factors,setFactors] = useState<ScenarioFactors>({
-    maintenanceGap:2,
-    trafficIncrease:10,
-    rainfallIntensity:4,
-    heavyVehicleRatio:12,
-    seismicIntensity:0,
-    materialQuality:0.9
-  })
-
-  const [interventions,setInterventions] = useState<Interventions>({
-    iotSensors:false,
-    frpReinforcement:false,
-    loadLimit:false
-  })
+  const [maintenanceGap] = useState(2)
 
   const data = useMemo(()=>{
 
-    const baseRisk = 15
+    const baseRisk = 20
     const startYear = 2024
 
-    let reduction = 0
-    if(interventions.iotSensors) reduction += 5
-    if(interventions.frpReinforcement) reduction += 10
-    if(interventions.loadLimit) reduction += 6
-
-    return Array.from({length:10}).map((_,i)=>({
-
+    return Array.from({length:12}).map((_,i)=>({
       year:startYear+i,
-      risk:Math.max(
-        5,
-        Math.min(
-          100,
-          baseRisk + i*5 + factors.maintenanceGap - reduction
-        )
-      )
-
+      risk:Math.min(100,baseRisk+i*6+maintenanceGap)
     }))
 
-  },[factors,interventions])
+  },[])
+
+  const failureYear = data.find(d=>d.risk>=80)?.year ?? "Safe"
 
   return(
+
     <div>
 
       <h1>Predictive Stress Simulator</h1>
 
-      <label>
-        <input
-          type="checkbox"
-          checked={interventions.iotSensors}
-          onChange={()=>setInterventions({...interventions,iotSensors:!interventions.iotSensors})}
-        />
-        IoT Monitoring
-      </label>
-
-      <label>
-        <input
-          type="checkbox"
-          checked={interventions.frpReinforcement}
-          onChange={()=>setInterventions({...interventions,frpReinforcement:!interventions.frpReinforcement})}
-        />
-        FRP Reinforcement
-      </label>
-
-      <label>
-        <input
-          type="checkbox"
-          checked={interventions.loadLimit}
-          onChange={()=>setInterventions({...interventions,loadLimit:!interventions.loadLimit})}
-        />
-        Load Limit Policy
-      </label>
+      <h2>Estimated Failure Year: {failureYear}</h2>
 
       <div style={{height:400}}>
+
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data}>
             <XAxis dataKey="year"/>
@@ -99,8 +37,10 @@ export const SimulatorPage: React.FC = () => {
             <Area type="monotone" dataKey="risk" stroke="#111" fill="#ccc"/>
           </AreaChart>
         </ResponsiveContainer>
+
       </div>
 
     </div>
+
   )
 }
