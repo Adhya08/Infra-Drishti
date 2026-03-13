@@ -9,28 +9,19 @@ interface ScenarioFactors {
   materialQuality: number;
 }
 
-const SimulationSlider: React.FC<{
-  label: string
-  value: number
-  min: number
-  max: number
-  onChange: (v:number)=>void
-}> = ({label,value,min,max,onChange}) => {
-
-  return (
-    <div>
-      <label>{label}</label>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        value={value}
-        onChange={(e)=>onChange(parseFloat(e.target.value))}
-      />
-      <span>{value}</span>
-    </div>
-  )
-}
+const SimulationSlider: React.FC<any> = ({label,value,min,max,onChange}) => (
+  <div>
+    <label>{label}</label>
+    <input
+      type="range"
+      min={min}
+      max={max}
+      value={value}
+      onChange={(e)=>onChange(parseFloat(e.target.value))}
+    />
+    <span>{value}</span>
+  </div>
+)
 
 export const SimulatorPage: React.FC = () => {
 
@@ -43,19 +34,33 @@ export const SimulatorPage: React.FC = () => {
     materialQuality: 0.9
   });
 
-  const risk = useMemo(() => {
-    return (
-      factors.maintenanceGap * 2 +
-      factors.trafficIncrease * 0.2 +
-      factors.rainfallIntensity * 1.5
-    )
-  }, [factors])
+  const simulationResults = useMemo(() => {
+
+    const startYear = 2024
+    const baseRisk = 15
+
+    const data = Array.from({length:10}).map((_,i)=>{
+
+      const risk =
+        baseRisk +
+        factors.maintenanceGap * i +
+        factors.trafficIncrease * 0.05 * i
+
+      return {
+        year: startYear + i,
+        risk: Math.min(100, Math.round(risk))
+      }
+
+    })
+
+    return data
+
+  },[factors])
 
   return (
     <div>
 
       <h1>Predictive Stress Simulator</h1>
-      <h2>Risk Score: {risk.toFixed(2)}</h2>
 
       <SimulationSlider
         label="Maintenance Delay"
@@ -65,22 +70,8 @@ export const SimulatorPage: React.FC = () => {
         onChange={(v)=>setFactors({...factors, maintenanceGap:v})}
       />
 
-      <SimulationSlider
-        label="Traffic Growth"
-        value={factors.trafficIncrease}
-        min={0}
-        max={200}
-        onChange={(v)=>setFactors({...factors, trafficIncrease:v})}
-      />
-
-      <SimulationSlider
-        label="Rainfall Intensity"
-        value={factors.rainfallIntensity}
-        min={1}
-        max={10}
-        onChange={(v)=>setFactors({...factors, rainfallIntensity:v})}
-      />
+      <pre>{JSON.stringify(simulationResults,null,2)}</pre>
 
     </div>
-  );
-};
+  )
+}
