@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 
 interface ScenarioFactors {
   maintenanceGap: number;
@@ -9,23 +10,9 @@ interface ScenarioFactors {
   materialQuality: number;
 }
 
-const SimulationSlider: React.FC<any> = ({label,value,min,max,onChange}) => (
-  <div>
-    <label>{label}</label>
-    <input
-      type="range"
-      min={min}
-      max={max}
-      value={value}
-      onChange={(e)=>onChange(parseFloat(e.target.value))}
-    />
-    <span>{value}</span>
-  </div>
-)
-
 export const SimulatorPage: React.FC = () => {
 
-  const [factors, setFactors] = useState<ScenarioFactors>({
+  const [factors] = useState<ScenarioFactors>({
     maintenanceGap: 2,
     trafficIncrease: 10,
     rainfallIntensity: 4,
@@ -34,43 +21,43 @@ export const SimulatorPage: React.FC = () => {
     materialQuality: 0.9
   });
 
-  const simulationResults = useMemo(() => {
+  const data = useMemo(()=>{
 
-    const startYear = 2024
     const baseRisk = 15
+    const startYear = 2024
 
-    const data = Array.from({length:10}).map((_,i)=>{
+    return Array.from({length:10}).map((_,i)=>({
+      year: startYear+i,
+      risk: Math.min(100, baseRisk + i*5)
+    }))
 
-      const risk =
-        baseRisk +
-        factors.maintenanceGap * i +
-        factors.trafficIncrease * 0.05 * i
-
-      return {
-        year: startYear + i,
-        risk: Math.min(100, Math.round(risk))
-      }
-
-    })
-
-    return data
-
-  },[factors])
+  },[])
 
   return (
     <div>
 
       <h1>Predictive Stress Simulator</h1>
 
-      <SimulationSlider
-        label="Maintenance Delay"
-        value={factors.maintenanceGap}
-        min={0}
-        max={20}
-        onChange={(v)=>setFactors({...factors, maintenanceGap:v})}
-      />
+      <div style={{height:400}}>
 
-      <pre>{JSON.stringify(simulationResults,null,2)}</pre>
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={data}>
+
+            <XAxis dataKey="year"/>
+            <YAxis/>
+            <Tooltip/>
+
+            <Area
+              type="monotone"
+              dataKey="risk"
+              stroke="#111"
+              fill="#ccc"
+            />
+
+          </AreaChart>
+        </ResponsiveContainer>
+
+      </div>
 
     </div>
   )
