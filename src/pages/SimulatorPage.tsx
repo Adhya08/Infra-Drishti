@@ -16,3 +16,15 @@ const [factors, setFactors] = useState({
     seismicIntensity: 0,
     materialQuality: 0.9
 });
+const simulationResults = useMemo(() => {
+    const maintenanceImpact = 1 + (Math.pow(factors.maintenanceGap, 1.4) * 0.03);
+    const trafficImpact = 1 + (factors.trafficIncrease * 0.012);
+    const totalMultiplier = maintenanceImpact * trafficImpact;
+
+    const data = Array.from({ length: 16 }).map((_, i) => ({
+        year: 2024 + i,
+        risk: Math.min(100, Math.round(15 * Math.pow(totalMultiplier, i)))
+    }));
+
+    return { chartData: data };
+}, [factors]);
