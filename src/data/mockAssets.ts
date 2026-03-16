@@ -106,4 +106,116 @@ export const mockAssets: Asset[] = [
         timeline: [],
         telemetry: { stress: 8.5, strain: 15, loadCapacity: 50000, vibrationFrequency: 12.2 }
     }
+     {
+        id: 'bandra-worli-sea-link',
+        name: 'Bandra-Worli Sea Link',
+        type: 'Bridge',
+        coordinates: [19.0330, 72.8158],
+        riskScore: 35,
+        age: 15,
+        lastMaintenance: '2023-11-10',
+        loadFactor: 8.5,
+        climateImpact: 8.8,
+        description: 'Iconic sea bridge with corrosion risk due to saline environment.',
+        zone: 'Mumbai',
+        timeline: [],
+        telemetry: { stress: 45.8, strain: 120, loadCapacity: 85000, vibrationFrequency: 0.85 }
+    },
+    {
+        id: 'atal-setu',
+        name: 'Atal Setu (Mumbai Trans Harbour Link)',
+        type: 'Bridge',
+        coordinates: [18.9912, 72.9515],
+        riskScore: 8,
+        age: 1,
+        lastMaintenance: '2024-01-12',
+        loadFactor: 8.8,
+        climateImpact: 9.2,
+        description: 'Indias longest sea bridge with smart monitoring.',
+        zone: 'Mumbai-Navi Mumbai',
+        timeline: [],
+        telemetry: { stress: 15.2, strain: 22, loadCapacity: 200000, vibrationFrequency: 0.72 }
+    },
+    {
+        id: 'mumbai-pune-exp',
+        name: 'Mumbai-Pune Expressway',
+        type: 'Road',
+        coordinates: [18.75, 73.35],
+        riskScore: 28,
+        age: 22,
+        lastMaintenance: '2024-03-05',
+        loadFactor: 9.8,
+        climateImpact: 7.5,
+        description: 'High-speed corridor through Western Ghats.',
+        zone: 'Maharashtra',
+        timeline: [],
+        telemetry: { stress: 32.5, strain: 85, loadCapacity: 180000, vibrationFrequency: 4.5 }
+    },
+
+    // --- GUJARAT STRATEGIC ---
+
+    {
+        id: 'statue-of-unity',
+        name: 'Statue of Unity',
+        type: 'Building',
+        coordinates: [21.8380, 73.7191],
+        riskScore: 5,
+        age: 6,
+        lastMaintenance: '2024-01-15',
+        loadFactor: 4.2,
+        climateImpact: 6.5,
+        description: 'World’s tallest statue with structural monitoring.',
+        zone: 'Gujarat',
+        timeline: [],
+        telemetry: { stress: 12.5, strain: 18, loadCapacity: 500000, vibrationFrequency: 0.42 }
+    },
+    {
+        id: 'sardar-sarovar-dam',
+        name: 'Sardar Sarovar Dam',
+        type: 'Building',
+        coordinates: [21.8285, 73.7483],
+        riskScore: 12,
+        age: 7,
+        lastMaintenance: '2023-11-20',
+        loadFactor: 8.8,
+        climateImpact: 7.2,
+        description: 'Major gravity dam critical for water supply.',
+        zone: 'Gujarat',
+        timeline: [],
+        telemetry: { stress: 35.8, strain: 92, loadCapacity: 3500000, vibrationFrequency: 0.25 }
+    },
+
+    // --- CENTRAL INDIA (MP) ---
+
+    {
+        id: 'rani-kamalapati-station',
+        name: 'Rani Kamalapati Railway Station',
+        type: 'Building',
+        coordinates: [23.2120, 77.4420],
+        riskScore: 5,
+        age: 3,
+        lastMaintenance: '2024-03-15',
+        loadFactor: 8.2,
+        climateImpact: 4.5,
+        description: 'Modern railway hub with smart infrastructure.',
+        zone: 'Bhopal',
+        timeline: [],
+        telemetry: { stress: 12.5, strain: 18, loadCapacity: 150000, vibrationFrequency: 2.8 }
+    },
+    {
+        id: 'mahakal-lok',
+        name: 'Mahakal Lok Corridor',
+        type: 'Building',
+        coordinates: [23.1760, 75.7885],
+        riskScore: 6,
+        age: 2,
+        lastMaintenance: '2024-02-10',
+        loadFactor: 9.5,
+        climateImpact: 6.8,
+        description: 'High crowd-density religious corridor.',
+        zone: 'Ujjain',
+        timeline: [],
+        telemetry: { stress: 8.4, strain: 22, loadCapacity: 80000, vibrationFrequency: 4.5 }
+    }
+
 ];
