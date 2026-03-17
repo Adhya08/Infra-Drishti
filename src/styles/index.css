@@ -8,3 +8,14 @@
     --accent: #475569;
     --accent-foreground: #ffffff;
 }
+
+body {
+    color: #1e293b;
+    background-color: #f8fafc;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark body {
+    color: #f8fafc;
+    background-color: #020617;
+}
