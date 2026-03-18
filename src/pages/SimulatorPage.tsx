@@ -28,3 +28,8 @@ const simulationResults = useMemo(() => {
 
     return { chartData: data };
 }, [factors]);
+const getHealthStatus = (risk: number) => {
+    if (risk > 75) return 'CRITICAL';
+    if (risk > 45) return 'WARNING';
+    return 'OPTIMAL';
+};
