@@ -217,5 +217,151 @@ export const mockAssets: Asset[] = [
         timeline: [],
         telemetry: { stress: 8.4, strain: 22, loadCapacity: 80000, vibrationFrequency: 4.5 }
     }
+  {
+        id: 'chenab-rail-bridge',
+        name: 'Chenab Rail Bridge',
+        type: 'Bridge',
+        coordinates: [33.1531, 74.8322],
+        riskScore: 18,
+        age: 2,
+        lastMaintenance: '2023-12-05',
+        loadFactor: 6.5,
+        climateImpact: 9.5,
+        description: 'World’s highest railway bridge with wind stress monitoring.',
+        zone: 'Jammu & Kashmir',
+        timeline: [],
+        telemetry: { stress: 42.1, strain: 58, loadCapacity: 80000, vibrationFrequency: 1.25 }
+    },
+    {
+        id: 'atal-tunnel',
+        name: 'Atal Tunnel (Rohtang)',
+        type: 'Tunnel',
+        coordinates: [32.44, 77.16],
+        riskScore: 18,
+        age: 4,
+        lastMaintenance: '2023-10-12',
+        loadFactor: 5.5,
+        climateImpact: 9.8,
+        description: 'High-altitude tunnel with extreme weather exposure.',
+        zone: 'Himachal Pradesh',
+        timeline: [],
+        telemetry: { stress: 22.1, strain: 38, loadCapacity: 25000, vibrationFrequency: 1.8 }
+    },
 
+    // --- SOUTH INDIA (COASTAL + URBAN LOAD) ---
+
+    {
+        id: 'pamban-bridge',
+        name: 'New Pamban Sea Bridge',
+        type: 'Bridge',
+        coordinates: [9.2787, 79.2154],
+        riskScore: 10,
+        age: 1,
+        lastMaintenance: '2024-05-12',
+        loadFactor: 5.2,
+        climateImpact: 9.9,
+        description: 'Vertical-lift sea bridge exposed to high salinity.',
+        zone: 'Tamil Nadu',
+        timeline: [],
+        telemetry: { stress: 21.4, strain: 28, loadCapacity: 55000, vibrationFrequency: 1.15 }
+    },
+    {
+        id: 'silk-board-interchange',
+        name: 'Silk Board Interchange',
+        type: 'Flyover',
+        coordinates: [12.9172, 77.6228],
+        riskScore: 48,
+        age: 18,
+        lastMaintenance: '2023-11-15',
+        loadFactor: 9.9,
+        climateImpact: 4.8,
+        description: 'One of India’s busiest traffic junctions.',
+        zone: 'Bengaluru',
+        timeline: [],
+        telemetry: { stress: 58.2, strain: 195, loadCapacity: 250000, vibrationFrequency: 5.8 }
+    },
+
+    // --- EASTERN INDIA (AGING + HEAVY LOAD) ---
+
+    {
+        id: 'howrah-bridge',
+        name: 'Howrah Bridge',
+        type: 'Bridge',
+        coordinates: [22.5851, 88.3468],
+        riskScore: 56,
+        age: 81,
+        lastMaintenance: '2021-12-15',
+        loadFactor: 9.2,
+        climateImpact: 8.5,
+        description: 'Legacy bridge with corrosion risk.',
+        zone: 'Kolkata',
+        timeline: [],
+        telemetry: { stress: 62.4, strain: 210, loadCapacity: 120000, vibrationFrequency: 1.12 }
+    },
+    {
+        id: 'bogibeel-bridge',
+        name: 'Bogibeel Bridge',
+        type: 'Bridge',
+        coordinates: [27.3944, 94.7578],
+        riskScore: 22,
+        age: 6,
+        lastMaintenance: '2024-04-05',
+        loadFactor: 8.8,
+        climateImpact: 9.5,
+        description: 'Longest rail-road bridge in Northeast India.',
+        zone: 'Assam',
+        timeline: [],
+        telemetry: { stress: 28.5, strain: 52, loadCapacity: 180000, vibrationFrequency: 1.05 }
+    },
+
+    // --- STRATEGIC EXPRESSWAYS + NATIONAL CORRIDORS ---
+
+    {
+        id: 'purvanchal-expressway',
+        name: 'Purvanchal Expressway',
+        type: 'Road',
+        coordinates: [26.35, 82.2],
+        riskScore: 12,
+        age: 3,
+        lastMaintenance: '2024-02-15',
+        loadFactor: 7.2,
+        climateImpact: 5.5,
+        description: 'High-speed corridor with emergency airstrip.',
+        zone: 'Uttar Pradesh',
+        timeline: [],
+        telemetry: { stress: 14.5, strain: 32, loadCapacity: 180000, vibrationFrequency: 5.2 }
+    },
+    {
+        id: 'delhi-mumbai-expressway',
+        name: 'Delhi-Mumbai Expressway',
+        type: 'Road',
+        coordinates: [26.0, 76.0],
+        riskScore: 5,
+        age: 1,
+        lastMaintenance: '2024-05-20',
+        loadFactor: 4.2,
+        climateImpact: 5.8,
+        description: 'India’s flagship economic corridor.',
+        zone: 'Rajasthan',
+        timeline: [],
+        telemetry: { stress: 12.2, strain: 20, loadCapacity: 500000, vibrationFrequency: 4.8 }
+    },
+
+    // --- HIGH-RISK LEGACY INFRA (IMPORTANT SIGNAL) ---
+
+    {
+        id: 'loha-pul',
+        name: 'Old Yamuna Bridge (Loha Pul)',
+        type: 'Bridge',
+        coordinates: [28.6617, 77.2555],
+        riskScore: 82,
+        age: 157,
+        lastMaintenance: '2022-08-15',
+        loadFactor: 9.9,
+        climateImpact: 9.5,
+        description: 'Severely aged bridge with structural fatigue.',
+        zone: 'Delhi',
+        timeline: [],
+        telemetry: { stress: 72.5, strain: 420, loadCapacity: 15000, vibrationFrequency: 0.85 }
+    }
 ];
