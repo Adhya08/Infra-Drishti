@@ -33,3 +33,8 @@ const getHealthStatus = (risk: number) => {
     if (risk > 45) return 'WARNING';
     return 'OPTIMAL';
 };
+<ResponsiveContainer>
+    <AreaChart data={simulationResults.chartData}>
+        <Area dataKey="risk" />
+    </AreaChart>
+</ResponsiveContainer>
