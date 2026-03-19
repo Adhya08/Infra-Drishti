@@ -19,3 +19,23 @@ body {
     color: #f8fafc;
     background-color: #020617;
 }
+
+/* Custom scrollbar for a premium feel */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #e2e8f0;
+    border-radius: 9999px;
+    transition: background-color 0.2s;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background-color: #1e293b;
+}
