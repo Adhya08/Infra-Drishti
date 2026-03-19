@@ -35,7 +35,18 @@ export const OpenSourcePage: React.FC = () => {
     </div>
   </div>
 </div>
+<div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+  <h2 className="text-xl font-bold text-slate-900 mb-6">
+    Data Sources
+  </h2>
 
+  <ul className="space-y-4">
+    <li>Department of Transportation</li>
+    <li>National Bridge Inventory</li>
+    <li>NOAA Climate Data</li>
+    <li>Municipal GIS</li>
+  </ul>
+</div>
 
     );
 };
