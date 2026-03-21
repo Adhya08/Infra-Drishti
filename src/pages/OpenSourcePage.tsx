@@ -48,5 +48,17 @@ export const OpenSourcePage: React.FC = () => {
   </ul>
 </div>
 
+<div className="mt-12 bg-blue-50 border border-blue-100 p-8 rounded-3xl text-center">
+  <h3 className="text-xl font-bold text-blue-900">
+    Collaborate With Us
+  </h3>
+  <p className="text-blue-800">
+    Help us refine our models.
+  </p>
+  <button className="px-8 py-3 bg-blue-600 text-white rounded-xl">
+    Contact Research Team
+  </button>
+</div>
+
     );
 };
