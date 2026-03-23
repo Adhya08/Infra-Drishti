@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { MapComponent } from '../components/MapComponent';
 import { mockAssets } from '../data/mockAssets';
@@ -247,4 +248,3 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onExplore, onHowItWork
         </div>
     );
 };
-

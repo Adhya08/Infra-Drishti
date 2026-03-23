@@ -1,22 +1,16 @@
-import React, { useState } from 'react';
-import { Navbar } from './components/Navbar';
-import { Sidebar } from './components/Sidebar';
 
-const App: React.FC = () => {
-    const [currentTab, setCurrentTab] = useState('home');
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
 
-    return (
-        <div>
-            <Navbar onTabChange={setCurrentTab} onToggleSidebar={() => setIsSidebarOpen(true)} />
-            <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+    throw new Error("Could not find root element to mount to");
+}
 
-            <main>
-                {currentTab === 'home' && <p>Home Page</p>}
-                {currentTab === 'map' && <p>Map Page</p>}
-            </main>
-        </div>
-    );
-};
-
-export default App;
+const root = ReactDOM.createRoot(rootElement);
+root.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);
